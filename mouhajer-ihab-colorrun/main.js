@@ -3,6 +3,17 @@ import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
 
+let runnersArr = document.querySelectorAll('.runner');
+
+runnersArr.forEach((runner) => {
+  runner.addEventListener('click', () => {
+    runnersArr.forEach((runner) => {
+      runner.classList.remove('runner--active');
+    });
+    runner.classList.add('runner--active');
+  });
+});
+
 document.querySelector('#app').innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">

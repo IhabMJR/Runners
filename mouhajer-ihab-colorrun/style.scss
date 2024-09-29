@@ -1,0 +1,75 @@
+@use "partials/base";
+@use "sass:color";
+
+body {
+  background-color: base.$bg;
+}
+
+.results {
+  display: grid;
+  width: 100%;
+  max-width: 960px;
+  padding: 20px;
+  margin: 50px auto;
+  grid-template-areas:
+    "no1 no1 no1 no1 no1 no1"
+    "no2 no2 no2 no3 no3 no3"
+    "no4 no4 no5 no5 no6 no6";
+  gap: 20px;
+
+  @each $runnerBg, $color in base.$colorsArr {
+    $colorHue: color.adjust($color, $hue: 50);
+    .runner--#{$runnerBg} {
+      .runner__picture {
+        background-image: linear-gradient($color, $colorHue);
+      }
+    }
+  }
+
+  @for $index from 1 through 6 {
+    :nth-child(#{$index}) {
+      position: relative;
+      grid-area: no#{$index};
+      &::after {
+        position: absolute;
+        content: "#{$index}";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+
+  .runner {
+    &__picture {
+      @include base.runner;
+      width: 100%;
+      border-radius: 100%;
+    }
+
+    &--active {
+        scale: 110%;
+    }
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .results {
+    grid-template-areas:
+      "no1 no1 no1 no1 no2 no2"
+      "no1 no1 no1 no1 no3 no3"
+      "no4 no4 no5 no5 no6 no6";
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .results {
+    grid-template-areas: "no1 no2 no3 no4 no5 no6";
+  }
+}
