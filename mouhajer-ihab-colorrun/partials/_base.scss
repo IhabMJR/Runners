@@ -1,0 +1,10 @@
+$bg: #476cd5;
+
+$colorsArr: (blue: #6dc8e4, green: #aaea8b, yellow: #f8dc4e, orange: #ffb070, geraldine: #ff808b, pink: #ea44ad);
+
+@mixin runner {
+  position: relative;
+  background-color: #000;
+  border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(.33,.99,.59,1.65);
+}
